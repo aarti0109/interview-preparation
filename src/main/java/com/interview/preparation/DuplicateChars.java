@@ -1,7 +1,8 @@
 package com.interview.preparation;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class DuplicateChars {
     public static void main(String[] args){
@@ -23,18 +24,16 @@ public class DuplicateChars {
                 System.out.println(entry.getKey());
             }
         }
+//         using stream API
+        List<Character> duplicateChars = input.replaceAll("\\s+", "")
+                .chars()
+                .mapToObj(c -> (char)c)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .filter(e-> e.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
 
-        // using stream API
-//        Map<Character, Integer> charCount1 = input.replaceAll("\\s+", "")
-//                .chars()
-//                .mapToObj(c -> (char)c)
-//                .collect(
-//                        LinkedHashMap::new,
-//                        (map, c) -> map.merge(c, 1, Integer::sum),
-//                        LinkedHashMap.putAll)
-//                .entrySet().stream()
-//                .filter(e -> e.getValue() > 1)
-//                .map(Map.Entry::getKey)
-//                .collect(Collectors.toList());
+        System.out.println("Duplicate characters :: "+duplicateChars);
     }
 }
