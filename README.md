@@ -7,4 +7,5 @@
 - Print prime numbers between 1 to 100
 - Reverse a string
 - Find unique elements from a list of integers
-- Square root of each element in a list using stream API 
+- Square root of each element in a list using stream API
+- Sort elements and find middle number of a list using stream API
